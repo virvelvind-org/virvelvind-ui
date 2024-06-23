@@ -1,13 +1,22 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 interface TagProps {
-  size?: "large" | "small";
+  size?: "large" | "small" | "x-small";
   accentuated?: boolean;
   children: React.ReactNode;
 }
 const Tag = React.forwardRef<HTMLDivElement, TagProps>(
   ({ size, accentuated, children, ...props }, ref) => {
-    const fontSize = size === "large" ? 20 : 16;
+    let fontSize = "16px";
+    if (size === "large") {
+      fontSize = "20px";
+    }
+    if (size === "small") {
+      fontSize = "14px";
+    }
+    if (size === "x-small") {
+      fontSize = "12px";
+    }
     const backgroundColor = accentuated ? "bg-yellow-200" : "bg-yellow-100";
 
     return (
