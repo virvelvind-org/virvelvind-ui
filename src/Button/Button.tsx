@@ -70,7 +70,6 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
     return (
       <Link
         href={href}
-        style={{ height: 40 }}
         className={cn(buttonVariants({ variant, size, full, className }))}
         ref={ref}
         {...props}
