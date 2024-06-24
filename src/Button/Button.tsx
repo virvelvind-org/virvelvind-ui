@@ -27,11 +27,14 @@ const buttonVariants = cva(
 
         link: "font-bold bg-transparent text-black underline-offset-2 hover:underline-offset-4 hover:underline hover:bg-transparent px-0",
       },
+      wrap: {
+        true: "whitespace-normal",
+      },
       full: {
         true: "w-full",
       },
       size: {
-        normal: "h-10 text-sm",
+        normal: "py-2 text-sm",
         small: "h-8 text-xs",
       },
     },
@@ -47,6 +50,7 @@ export interface LinkButtonProps
     VariantProps<typeof buttonVariants> {
   href: string;
   size?: "normal" | "small";
+  wrap?: boolean;
   rightIcon?: React.ReactNode;
 }
 
@@ -57,6 +61,7 @@ export interface ButtonProps
   disabled?: boolean;
   href?: string;
   size?: "normal" | "small";
+  wrap?: boolean;
   rightIcon?: React.ReactNode;
   isLoading?: boolean;
   onClick?: () => void;
@@ -64,13 +69,23 @@ export interface ButtonProps
 
 export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
   (
-    { className, variant, full, size, href, children, rightIcon, ...props },
+    {
+      className,
+      variant,
+      full,
+      size,
+      href,
+      children,
+      wrap,
+      rightIcon,
+      ...props
+    },
     ref
   ) => {
     return (
       <Link
         href={href}
-        className={cn(buttonVariants({ variant, size, full, className }))}
+        className={cn(buttonVariants({ variant, size, full, wrap, className }))}
         ref={ref}
         {...props}
       >
@@ -94,6 +109,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       rightIcon,
       children,
+      wrap,
       isLoading,
       ...props
     },
@@ -103,7 +119,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         disabled={disabled}
         onClick={!isLoading && !disabled ? onClick : undefined}
-        className={cn(buttonVariants({ variant, size, full, className }))}
+        className={cn(buttonVariants({ variant, size, full, wrap, className }))}
         ref={ref}
         {...props}
       >
