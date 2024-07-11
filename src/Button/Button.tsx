@@ -63,7 +63,7 @@ export interface ButtonProps
   wrap?: boolean;
   rightIcon?: React.ReactNode;
   isLoading?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
