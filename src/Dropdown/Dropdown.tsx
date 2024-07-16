@@ -14,7 +14,9 @@ interface DropdownProps extends SelectHTMLAttributes<HTMLSelectElement> {
 const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
   ({ label, description, full, options, ...props }, ref) => {
     return (
-      <div className={`flex flex-col ${full ? "w-full" : ""}`}>
+      <div
+        className={`flex flex-col ${full ? "w-full" : ""} ${props.className}`}
+      >
         {label && <label className="text-base">{label}</label>}
         {description && (
           <p className="text-grey-700 leading-5 py-2 font-normal">
