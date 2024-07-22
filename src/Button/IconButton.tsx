@@ -4,12 +4,13 @@ import Link from "next/link";
 interface IconButtonProps {
   href?: string;
   children: React.ReactNode;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void;
+  asDiv?: boolean;
   className?: string;
 }
 
 const IconButton = React.forwardRef<HTMLAnchorElement, IconButtonProps>(
-  ({ href, children, onClick, className, ...props }, ref) => {
+  ({ href, children, onClick, asDiv, className, ...props }, ref) => {
     if (href) {
       return (
         <Link href={href} {...props}>
@@ -21,6 +22,20 @@ const IconButton = React.forwardRef<HTMLAnchorElement, IconButtonProps>(
         </Link>
       );
     }
+
+    if (asDiv) {
+      return (
+        <div
+          onClick={onClick}
+          className={`flex items-center w-10 h-10 justify-center rounded-full hover:bg-gray-200 bg-yellow-200 ${className}`}
+          {...props}
+        >
+          {children}
+        </div>
+      );
+    }
+
+    // if "as" is passed, render as that element
     return (
       <button
         onClick={onClick}
