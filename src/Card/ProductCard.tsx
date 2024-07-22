@@ -27,7 +27,7 @@ const EmptyImage = () => (
 );
 
 const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
-  ({ className, ...props }, ref) => (
+  ({ className, onPurchase, isAvailable, imageUrl, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
@@ -37,18 +37,14 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       {...props}
     >
       <div className="relative">
-        {typeof props.isAvailable !== "undefined" && !props.isAvailable && (
+        {typeof isAvailable !== "undefined" && !isAvailable && (
           <div className="absolute left-4 bottom-4">
             <Tag size="small">Inte i lager</Tag>
           </div>
         )}
         <Link href={props.url}>
-          {props.imageUrl ? (
-            <img
-              className="w-full h-48 object-cover"
-              src={props.imageUrl}
-              alt=""
-            />
+          {imageUrl ? (
+            <img className="w-full h-48 object-cover" src={imageUrl} alt="" />
           ) : (
             <EmptyImage />
           )}
@@ -77,8 +73,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         </div>
         {!props.hideAddToCart && (
           <div className="mt-6">
-            {props.isAvailable ? (
-              <Button full onClick={props.onPurchase}>
+            {isAvailable ? (
+              <Button full onClick={onPurchase}>
                 Lägg i varukorg
               </Button>
             ) : (
