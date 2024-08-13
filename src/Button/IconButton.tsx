@@ -15,7 +15,7 @@ const IconButton = React.forwardRef<HTMLAnchorElement, IconButtonProps>(
       return (
         <Link href={href} {...props}>
           <a
-            className={`flex items-center w-10 h-10 justify-center rounded-full hover:bg-gray-200 bg-yellow-200 ${className}`}
+            className={`flex items-center w-10 h-10 justify-center overflow-hidden rounded-full hover:bg-gray-200 bg-yellow-200 ${className}`}
           >
             {children}
           </a>
@@ -27,7 +27,7 @@ const IconButton = React.forwardRef<HTMLAnchorElement, IconButtonProps>(
       return (
         <div
           onClick={onClick}
-          className={`flex items-center w-10 h-10 justify-center rounded-full hover:bg-gray-200 bg-yellow-200 ${className}`}
+          className={`flex items-center w-10 h-10 justify-center overflow-hidden rounded-full hover:bg-gray-200 bg-yellow-200 ${className}`}
           {...props}
         >
           {children}
@@ -39,7 +39,7 @@ const IconButton = React.forwardRef<HTMLAnchorElement, IconButtonProps>(
     return (
       <button
         onClick={onClick}
-        className={`flex items-center w-10 h-10 justify-center rounded-full hover:bg-gray-200 bg-yellow-200 ${className}`}
+        className={`flex items-center w-10 h-10 justify-center overflow-hidden rounded-full hover:bg-gray-200 bg-yellow-200 ${className}`}
         {...props}
       >
         {children}
