@@ -50,6 +50,7 @@ export interface LinkButtonProps
   href: string;
   size?: "normal" | "small";
   wrap?: boolean;
+  disabled?: boolean;
   rightIcon?: React.ReactNode;
 }
 
@@ -70,6 +71,7 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
   (
     {
       className,
+      disabled,
       variant,
       full,
       size,
@@ -83,7 +85,8 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
   ) => {
     return (
       <Link
-        href={href}
+        href={disabled ? "#" : href}
+        aria-disabled={disabled}
         className={cn(buttonVariants({ variant, size, full, wrap, className }))}
         ref={ref}
         {...props}
