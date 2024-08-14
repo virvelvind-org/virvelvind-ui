@@ -4,9 +4,22 @@ interface TagProps {
   size?: "large" | "small" | "x-small";
   accentuated?: boolean;
   children: React.ReactNode;
+  color?: keyof typeof colorTable;
 }
+
+const colorTable = {
+  red: {
+    backgroundColor: "bg-red",
+    textColor: "text-white",
+  },
+  green: {
+    backgroundColor: "bg-green",
+    textColor: "text-white",
+  },
+};
+
 const Tag = React.forwardRef<HTMLDivElement, TagProps>(
-  ({ size, accentuated, children, ...props }, ref) => {
+  ({ size, accentuated, children, color, ...props }, ref) => {
     let fontSize = "16px";
     if (size === "large") {
       fontSize = "20px";
@@ -17,7 +30,12 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(
     if (size === "x-small") {
       fontSize = "12px";
     }
-    const backgroundColor = accentuated ? "bg-yellow-200" : "bg-yellow-100";
+    let backgroundColor = accentuated ? "bg-yellow-200" : "bg-yellow-100";
+    let textColor = "text-black";
+    if (color) {
+      backgroundColor = colorTable[color].backgroundColor;
+      textColor = colorTable[color].textColor;
+    }
 
     return (
       <div
@@ -28,7 +46,7 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(
           lineHeight: "24px",
           borderRadius: 8,
         }}
-        className={cn(backgroundColor)}
+        className={cn(backgroundColor, textColor)}
         {...props}
       >
         {children}
