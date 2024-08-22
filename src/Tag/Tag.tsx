@@ -16,6 +16,10 @@ const colorTable = {
     backgroundColor: "bg-green",
     textColor: "text-white",
   },
+  yellow: {
+    backgroundColor: "bg-yellow-400",
+    textColor: "text-black",
+  },
 };
 
 const Tag = React.forwardRef<HTMLDivElement, TagProps>(
@@ -38,18 +42,19 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(
     }
 
     return (
-      <div
-        ref={ref}
-        style={{
-          fontSize,
-          padding: "2.5px 6px 2.5px 6px",
-          lineHeight: "24px",
-          borderRadius: 8,
-        }}
-        className={cn(backgroundColor, textColor)}
-        {...props}
-      >
-        {children}
+      <div className="flex items-start justify-start">
+        <div
+          ref={ref}
+          style={{
+            fontSize,
+            padding: "2.5px 6px",
+            borderRadius: 8,
+          }}
+          className={cn(backgroundColor, textColor, "rounded-full")}
+          {...props}
+        >
+          {children}
+        </div>
       </div>
     );
   }
