@@ -20,6 +20,10 @@ const colorTable = {
     backgroundColor: "bg-yellow-400",
     textColor: "text-black",
   },
+  activeGreen: {
+    backgroundColor: "bg-lime-600",
+    textColor: "text-white",
+  },
 };
 
 const Tag = React.forwardRef<HTMLDivElement, TagProps>(
