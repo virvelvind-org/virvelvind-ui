@@ -51,6 +51,7 @@ export interface LinkButtonProps
   size?: "normal" | "small";
   wrap?: boolean;
   disabled?: boolean;
+  isLoading?: boolean;
   rightIcon?: React.ReactNode;
 }
 
@@ -78,6 +79,7 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
       href,
       children,
       wrap,
+      isLoading,
       rightIcon,
       ...props
     },
@@ -91,6 +93,9 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
         ref={ref}
         {...props}
       >
+        {isLoading && (
+          <FaSpinner className="animate-spin h-4 w-4 mr-4 text-black" />
+        )}
         {children}
         {rightIcon && <span className="ml-1">{rightIcon}</span>}
       </Link>
