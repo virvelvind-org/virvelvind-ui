@@ -13,7 +13,8 @@ const buttonVariants = cva(
         default: "bg-yellow-400 text-black  font-bold",
         uppercase:
           "uppercase bg-yellow-400 text-black font-normal tracking-wider",
-        disabled: "bg-gray-200 text-gray-400",
+        disabled:
+          "bg-gray-200 text-gray-400 hover:bg-gray-200 pointer-events-none",
         tertiary:
           "bg-transparent text-black font-normal underline-offset-2 hover:underline-offset-4 hover:underline font-bold",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -85,11 +86,21 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
     },
     ref
   ) => {
+    const parsedVariant = disabled ? "disabled" : variant;
     return (
       <Link
         href={disabled ? "#" : href}
         aria-disabled={disabled}
-        className={cn(buttonVariants({ variant, size, full, wrap, className }))}
+        className={cn(
+          buttonVariants({
+            variant: parsedVariant,
+            size,
+            full,
+            wrap,
+            className,
+          }),
+          ...(disabled ? "pointer-events-none" : "")
+        )}
         ref={ref}
         {...props}
       >
