@@ -8,7 +8,9 @@ interface ProductCardProps {
   imageUrl?: string;
   price?: number;
   oldPrice?: number;
+  description?: string;
   producer?: string;
+  producerUrl?: string;
   name?: string;
   isAvailable?: boolean;
   url: string;
@@ -51,9 +53,23 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         </Link>
       </div>
       <div className="p-3 flex flex-col flex-1 justify-end">
-        <p style={{ fontSize: 15, fontWeight: 400 }} className="mb-1">
-          {props.producer}
-        </p>
+        {props.producer && (
+          <>
+            {props.producerUrl ? (
+              <Link
+                href={props.producerUrl}
+                style={{ fontSize: 15, fontWeight: 400 }}
+                className="mb-1"
+              >
+                {props.producer}
+              </Link>
+            ) : (
+              <p style={{ fontSize: 15, fontWeight: 400 }} className="mb-1">
+                {props.producer}
+              </p>
+            )}
+          </>
+        )}
         <Link
           className="font-bold leading-snug"
           style={{ fontSize: 20 }}
@@ -61,9 +77,18 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         >
           {props.name}
         </Link>
-        <div className="flex-grow" />
+        {!props.description && <div className="flex-grow" />}
+        {props.description && (
+          <>
+            <p className="text-ellipsis line-clamp-3 text-sm text-gray-500 mt-2 justify-self-start">
+              {props.description}
+            </p>
+            <div className="flex-grow" />
+          </>
+        )}
+
         <div className="flex gap-2 mt-8">
-          <Tag size="large">{props.price} kr</Tag>
+          {props.price && <Tag size="large">{props.price} kr</Tag>}
 
           {props.oldPrice && (
             <span className="text-sm text-muted-foreground line-through ml-2">
