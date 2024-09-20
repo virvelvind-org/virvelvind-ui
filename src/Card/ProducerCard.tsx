@@ -13,8 +13,8 @@ interface ProducerCardProps {
   tags?: string[];
 }
 
-const EmptyImage = () => (
-  <div className="w-full h-48 object-cover bg-grey-400 relative">
+const EmptyImage = ({ className }: { className?: string }) => (
+  <div className={`w-full h-48 object-cover bg-grey-400 relative ${className}`}>
     <img
       src="/img/producer_placeholder.png"
       alt="Placeholder image"
@@ -28,7 +28,7 @@ const ProducerCard = React.forwardRef<HTMLDivElement, ProducerCardProps>(
     <div
       ref={ref}
       className={cn(
-        "rounded-sm bg-card text-card-foreground overflow-hidden shadow-lg flex flex-1 flex-col",
+        "rounded-sm bg-card text-card-foreground shadow-lg flex flex-1 flex-col",
         className
       )}
       {...props}
@@ -46,12 +46,12 @@ const ProducerCard = React.forwardRef<HTMLDivElement, ProducerCardProps>(
         <Link href={props.url} className="bg-brown-500">
           {props.imageUrl ? (
             <img
-              className="w-full h-48 object-cover bg-grey-300"
+              className="w-full h-48 object-cover bg-grey-300 rounded-t-sm"
               src={props.imageUrl}
               alt=""
             />
           ) : (
-            <EmptyImage />
+            <EmptyImage className="rounded-t-sm" />
           )}
         </Link>
       </div>
