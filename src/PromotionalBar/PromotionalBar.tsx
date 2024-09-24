@@ -11,7 +11,11 @@ interface PromotionalBarProps {
   linkUrl: string;
 }
 
-export default function PromotionalBar({ message, linkText, linkUrl }: PromotionalBarProps) {
+export default function PromotionalBar({
+  message,
+  linkText,
+  linkUrl,
+}: PromotionalBarProps) {
   const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) {
@@ -23,10 +27,13 @@ export default function PromotionalBar({ message, linkText, linkUrl }: Promotion
       <div className="container mx-auto flex items-center justify-between">
         <div className="hidden sm:block flex-1" />
         <div className="text-center flex-grow sm:flex-grow-0  text-sm md:text-base font-semibold">
-          {/* <span className="hidden sm:inline">Just nu: </span> */}
           <span className="">{message}</span>
           <br className="md:hidden" />
-          <Link href={linkUrl} className="underline ml-1 sm:ml-2" target="_blank">
+          <Link
+            href={linkUrl}
+            className="underline ml-1 sm:ml-2"
+            target="_blank"
+          >
             {linkText}
           </Link>
         </div>
