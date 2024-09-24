@@ -26,7 +26,7 @@ export default function PromotionalBar({ message, linkText, linkUrl }: Promotion
           {/* <span className="hidden sm:inline">Just nu: </span> */}
           <span className="">{message}</span>
           <br className="md:hidden" />
-          <Link href={linkUrl} className="underline ml-1 sm:ml-2">
+          <Link href={linkUrl} className="underline ml-1 sm:ml-2" target="_blank">
             {linkText}
           </Link>
         </div>
