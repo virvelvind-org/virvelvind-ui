@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../Button";
 
 interface PromotionalBarProps {
   message: string;
@@ -40,7 +40,6 @@ export default function PromotionalBar({
         <div className="flex-1 flex justify-end">
           <Button
             variant="ghost"
-            size="icon"
             onClick={() => setIsVisible(false)}
             className="text-white hover:text-secondary-foreground -mr-2 sm:mr-0"
           >
