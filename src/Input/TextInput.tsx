@@ -21,7 +21,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         <input
           ref={ref}
           {...props}
-          className="border-grey-500 border rounded p-2 w-full focus:ring-2 hover:border-black focus:ring-yellow-200 focus:border-yellow-200 focus:outline-none"
+          className={`border-grey-500 border rounded p-2 w-full focus:ring-2 hover:border-black focus:ring-yellow-200 focus:border-yellow-200 focus:outline-none ${props.className}`}
         />
       </div>
     );
