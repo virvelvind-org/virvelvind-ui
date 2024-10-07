@@ -35,7 +35,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
             <option
               key={option.value}
               value={option.value}
-              disabled={option.value === ""}
+              disabled={option.value === "" || option.disabled}
             >
               {option.label}
             </option>
