@@ -9,7 +9,9 @@ interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, id, description, ...props }, ref) => {
     return (
-      <div className="flex items-center">
+      <div
+        className={`flex items-center${props.disabled ? " opacity-50" : ""}`}
+      >
         <input
           checked
           id={id}
